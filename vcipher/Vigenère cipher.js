@@ -29,18 +29,9 @@ var VigenereCipher = {
     z: "zabcdefghijklmnopqrstuvwxy"
   },
 
-  /*
-    test string to encrypt
-    keyk eykeyk ey keykeyk
-    keykeykeykeykeykey
-    diqd wrb
-    diqd wrbmlq xm orabcnd
-
-    diqd wrbmlq xm orabcnd
-    keyk eykeyk ey keykeyk
-  */
-
   encrypt: function(plainText, keyword){
+    plainText = plainText.toLowerCase();
+    keyword = keyword.match(/[a-z]/gi).join("").toLowerCase();
     var encryptedText = "";
     var specialCharacterCount = 0;
 
@@ -60,6 +51,8 @@ var VigenereCipher = {
   },
 
   decrypt: function(encryptedText, keyword){
+    encryptedText = encryptedText.toLowerCase();
+    keyword = keyword.match(/[a-z]/gi).join("").toLowerCase();
     var decryptedText = "";
     var specialCharacterCount = 0;
 
@@ -74,7 +67,7 @@ var VigenereCipher = {
         specialCharacterCount++;
       }
     }
-    
+
     return decryptedText;
   }
 
