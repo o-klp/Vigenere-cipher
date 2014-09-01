@@ -30,6 +30,13 @@ var VigenereCipher = {
   },
 
   encrypt: function(plainText, keyword){
+    if( typeof(plainText) !== "string" ){
+      return "invalid plainText. Must be string, not " typeof(plainText);
+    }
+    if( typeof(keyword) !== "string" ){
+      return "invalid keyword. Must be string, not " typeof(keyword);
+    }
+
     plainText = plainText.toLowerCase();
     keyword = keyword.match(/[a-z]/gi).join("").toLowerCase();
     var encryptedText = "";
@@ -51,6 +58,13 @@ var VigenereCipher = {
   },
 
   decrypt: function(encryptedText, keyword){
+    if( typeof(encryptedText) !== "string" ){
+      return "invalid encryptedText. Must be string, not " typeof(encryptedText);
+    }
+    if( typeof(keyword) !== "string" ){
+      return "invalid keyword. Must be string, not " typeof(keyword);
+    }
+
     encryptedText = encryptedText.toLowerCase();
     keyword = keyword.match(/[a-z]/gi).join("").toLowerCase();
     var decryptedText = "";
