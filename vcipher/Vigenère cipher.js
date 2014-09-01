@@ -41,23 +41,30 @@ var VigenereCipher = {
 
     Sometexttoencryptcant
     keykeykeykeykeykeykey
+
+    test string to encrypt
+    keyk eykeyk ey keykeyk
+
+    diqd qdvgxk ds orabcnd
   */
 
   encrypt: function(plainText, keyword){
     var encryptedText = "";
     var keyLength = keyword.length;
-    var strippedText = plainText.split(" ").join("");
 
-    for( var i = 0; i < strippedText.length; i++ ){
+    for( var i = 0; i < plainText.length; i++ ){
       var keyLetter = i % keyLength;
       var keywordIndex = VigenereCipher._tabulaRecta.a.indexOf(keyword[keyLetter]);
 
-      encryptedText += VigenereCipher._tabulaRecta[strippedText[i]][keywordIndex];
+      if( VigenereCipher._tabulaRecta[plainText[i]] ){
+        encryptedText += VigenereCipher._tabulaRecta[plainText[i]][keywordIndex];
+      }else{
+        encryptedText += " ";
+      }
 
     }
 
     return encryptedText;
-
   }
 
 };
