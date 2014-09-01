@@ -3,8 +3,8 @@ Vigenere-cipher
 
 This is a simple Vigenere cipher. Read more here: http://en.wikipedia.org/wiki/Vigenère_cipher
 
-To use, add the file and this script to your working directory/html file:
-<pre><\script type="text/javascript" src="./Vigenere cipher.js"><\/script></pre>
+To use, add the file and a script tag like the one below to your working directory/html file:
+<pre>script type="text/javascript" src="./Vigenere cipher.js" /script</pre>
 
 Comes with two functions, VigenereCipher.encrypt and VigenereCipher.decrypt
 .encrypt takes a plain text string as the first argument and a keyword as the second argument.
