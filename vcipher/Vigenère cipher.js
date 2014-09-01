@@ -30,36 +30,23 @@ var VigenereCipher = {
   },
 
   /*
-    Some text to encrypt
-    keyk eyke yk eykeyke
-
-    Sometexttoencrypt
-    keykeykeykeykeyke
-
-    Some text to encrypt can't
-    keyk eyke yk eykeyke yke y
-
-    Sometexttoencryptcant
-    keykeykeykeykeykeykey
-
     test string to encrypt
     keyk eykeyk ey keykeyk
+    keykeykeykeykeykey
     diqd wrb
     diqd wrbmlq xm orabcnd
 
-    diqd qdvgxk ds orabcnd
+    diqd wrbmlq xm orabcnd
+    keyk eykeyk ey keykeyk
   */
 
   encrypt: function(plainText, keyword){
     var encryptedText = "";
-    var keyLength = keyword.length;
     var specialCharacterCount = 0;
 
     for( var i = 0; i < plainText.length; i++ ){
-      var keyLetter = (i - specialCharacterCount) % keyLength;
+      var keyLetter = (i - specialCharacterCount) % keyword.length;
       var keywordIndex = VigenereCipher._tabulaRecta.a.indexOf(keyword[keyLetter]);
-      console.log("before - ", encryptedText);
-      console.log("keyletter - ", keyword[keyLetter]);
 
       if( VigenereCipher._tabulaRecta[plainText[i]] ){
         encryptedText += VigenereCipher._tabulaRecta[plainText[i]][keywordIndex];
@@ -67,12 +54,30 @@ var VigenereCipher = {
         encryptedText += plainText[i];
         specialCharacterCount++;
       }
-      console.log("after - ", encryptedText);
-
     }
 
     return encryptedText;
+  },
+
+  decrypt: function(encryptedText, keyword){
+    var decryptedText = "";
+    var specialCharacterCount = 0;
+
+    for( var i = 0; i < encryptedText.length; i++ ){
+      var keyLetter = (i - specialCharacterCount) % keyword.length;
+      var keyRow = VigenereCipher._tabulaRecta[keyword[keyLetter]];
+
+      if( keyRow.indexOf(encryptedText[i]) !== -1 ){
+        decryptedText += VigenereCipher._tabulaRecta.a[keyRow.indexOf(encryptedText[i])];
+      }else{
+        decryptedText += encryptedText[i];
+        specialCharacterCount++;
+      }
+    }
+    
+    return decryptedText;
   }
+
 
 };
 
