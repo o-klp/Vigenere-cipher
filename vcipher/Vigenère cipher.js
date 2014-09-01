@@ -1,7 +1,7 @@
 var VigenereCipher = {
 
   _tabulaRecta: {
-    a:"abcdefghijklmnopqrstuvwxyz",
+    a: "abcdefghijklmnopqrstuvwxyz",
     b: "bcdefghijklmnopqrstuvwxyza",
     c: "cdefghijklmnopqrstuvwxyzab",
     d: "defghijklmnopqrstuvwxyzabc",
@@ -27,6 +27,37 @@ var VigenereCipher = {
     x: "xyzabcdefghijklmnopqrstuvw",
     y: "yzabcdefghijklmnopqrstuvwx",
     z: "zabcdefghijklmnopqrstuvwxy"
+  },
+
+  /*
+    Some text to encrypt
+    keyk eyke yk eykeyke
+
+    Sometexttoencrypt
+    keykeykeykeykeyke
+
+    Some text to encrypt can't
+    keyk eyke yk eykeyke yke y
+
+    Sometexttoencryptcant
+    keykeykeykeykeykeykey
+  */
+
+  encrypt: function(plainText, keyword){
+    var encryptedText = "";
+    var keyLength = keyword.length;
+    var strippedText = plainText.split(" ").join("");
+
+    for( var i = 0; i < strippedText.length; i++ ){
+      var keyLetter = i % keyLength;
+      var keywordIndex = VigenereCipher._tabulaRecta.a.indexOf(keyword[keyLetter]);
+
+      encryptedText += VigenereCipher._tabulaRecta[strippedText[i]][keywordIndex];
+
+    }
+
+    return encryptedText;
+
   }
 
 };
