@@ -7,7 +7,7 @@ describe('VigenereCipher()', function () {
   'use strict';
 
   it('exists', function () {
-    expect(VigenereCipher).to.be.a('function');
+    expect(VigenereCipher).to.be.a('object');
 
   });
 
@@ -16,11 +16,11 @@ describe('VigenereCipher()', function () {
   });
 
   it('has a decrypt function', function () {
-    expect(VigenereCipher.decrypt).to.equal('function');
+    expect(VigenereCipher.decrypt).to.be.a('function');
   });
 
   describe('.encrypt', function(){
-    var plainText, key;
+    var plainText, keyword;
 
     beforeEach(function(){
       plainText = 'some test string';
@@ -28,7 +28,7 @@ describe('VigenereCipher()', function () {
     });
 
     it('should take only take a plaintext string and keyword string as input', function(){
-      expect(VigenereCipher.encrypt(true, flase).split(" ")[0]).to.equal("invalid");
+      expect(VigenereCipher.encrypt(true, false).split(" ")[0]).to.equal("invalid");
     });
 
     it('should encrypt a string against a keyword', function(){
@@ -37,7 +37,7 @@ describe('VigenereCipher()', function () {
 
     it('should not encrypt a string if keyword is all a\'s (nature of Vigenére Ciphers', function(){
       keyword = 'aa';
-      expect(VigenereCipher.encrypt(plainText, keyword)).to.equal(keyword);
+      expect(VigenereCipher.encrypt(plainText, keyword)).to.equal(plainText);
     });
 
     it('should ignore keyword capitalization', function(){
@@ -62,7 +62,7 @@ describe('VigenereCipher()', function () {
     it('should skip spaces and special characters when encrypting', function(){
       plainText = 't e s t s t r i n g';
       var encryptedText = VigenereCipher.encrypt(plainText, keyword);
-      expect(VigenereCipher.encrypt('teststring', keyword))to.equal(encryptedText.split(" ").join(""));
+      expect(VigenereCipher.encrypt('teststring', keyword)).to.equal(encryptedText.split(" ").join(""));
     });
 
   })
