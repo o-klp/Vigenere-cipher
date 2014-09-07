@@ -87,3 +87,4 @@ var VigenereCipher = {
 
 };
 
+module.exports = VigenereCipher;
