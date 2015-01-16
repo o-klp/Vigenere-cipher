@@ -32,10 +32,10 @@ describe('VigenereCipher()', function () {
     });
 
     it('should encrypt a string against a keyword', function(){
-      expect(VigenereCipher.encrypt(plainText, keyword)).to.not.equal(keyword);
+      expect(VigenereCipher.encrypt(plainText, keyword)).to.not.equal(plaintext);
     });
 
-    it('should not encrypt a string if keyword is all a\'s (nature of Vigenére Ciphers', function(){
+    it('should not encrypt a string if keyword is all a\'s (nature of Vigenére Ciphers)', function(){
       keyword = 'aa';
       expect(VigenereCipher.encrypt(plainText, keyword)).to.equal(plainText);
     });
